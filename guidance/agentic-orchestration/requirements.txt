@@ -26,5 +26,7 @@ pyyaml
 requests
 
 # UI and Monitoring
-streamlit
 aws-opentelemetry-distro>=0.10.0
+
+#dependancy upgrades
+protobuf>=5.29.6

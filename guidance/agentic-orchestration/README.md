@@ -126,7 +126,7 @@ This guidance uses serverless AWS services and can be deployed from Linux/macOS/
 1. Clone the repository:
    ```bash
    git clone https://github.com/aws-samples/aws-ai-intelligent-document-processing.git
-   cd agenticidp-guidance
+   cd guidance/agentic-orchestration
    ```
 
 2. Install the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
@@ -136,6 +136,8 @@ This guidance uses serverless AWS services and can be deployed from Linux/macOS/
 4. Install Python 3.11+ and the [uv package manager](https://docs.astral.sh/uv/getting-started/installation/)
 
 5. Install [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting-started.html)
+
+6. Install [Docker](https://docs.docker.com/get-docker/) or equivalent (Podman, etc.) for building containers
 
 
 ### AWS account requirements
