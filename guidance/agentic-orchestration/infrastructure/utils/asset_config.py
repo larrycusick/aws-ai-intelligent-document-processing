@@ -99,7 +99,9 @@ def get_docker_asset_props(
     directory: str = ".",
     dockerfile: str = "Dockerfile",
     additional_excludes: List[str] = None,
-    platform: ecr_assets.Platform = ecr_assets.Platform.LINUX_ARM64
+    # Default to amd64 to match most CI/CodeBuild build hosts.
+    # Override if running on ARM-based build hosts or if you need multi-arch images.
+    platform: ecr_assets.Platform = ecr_assets.Platform.LINUX_AMD64
 ) -> dict:
     """
     Get standardized Docker asset properties with optimized excludes.
