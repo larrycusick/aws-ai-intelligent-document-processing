@@ -75,7 +75,25 @@ class ModernOrchestratorUIStack(Stack):
                 admin_email=admin_email,
                 cloudfront_url=cloudfront_url
             )
-        
+  
+            # Suppress CDK Nag findings from the provider framework and its auto-generated Lambda role/policy.
+            # These are acceptable for this guidance/demo project.
+            NagSuppressions.add_stack_suppressions(self, [
+                {
+                    "id": "AwsSolutions-IAM4",
+                    "reason": "CDK Custom Resource provider uses AWS managed policies for its service role.",
+                    "appliesTo": ["Policy::arn:<AWS::Partition>:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"]
+                },
+                {
+                    "id": "AwsSolutions-IAM5",
+                    "reason": "Cognito admin operations require wildcard resources for this demo custom resource implementation.",
+                },
+                {
+                    "id": "AwsSolutions-L1",
+                    "reason": "The CDK provider framework creates a helper Lambda which may not use the latest runtime; this is acceptable for this demo stack.",
+                }
+            ])
+             
         # Create outputs
         self._create_outputs()
 
