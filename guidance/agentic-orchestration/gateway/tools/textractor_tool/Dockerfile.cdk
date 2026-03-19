@@ -4,14 +4,10 @@
 FROM public.ecr.aws/lambda/python:3.11
 
 # Install system dependencies for textract-textractor
-# Base image is Amazon Linux 2 (uses yum). amazon-linux-extras is not pre-installed
-# in the minimal Lambda image, so install it first, then use it to enable EPEL
-# (tesseract is only available via EPEL on AL2).
-RUN yum install -y amazon-linux-extras && \
-    amazon-linux-extras install epel -y && \
-    yum install -y \
+# poppler-utils is required for PDF processing (available in default AL2 repos).
+# tesseract is NOT needed — this Lambda uses Amazon Textract (cloud OCR), not local tesseract.
+RUN yum install -y \
     poppler-utils \
-    tesseract \
     && yum clean all
 
 # Copy shared utilities from parent context
